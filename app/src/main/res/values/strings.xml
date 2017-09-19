@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NYTimesApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="api_key" templateMergeStrategy="preserve">585a4d9704ea4858a0c05676d3a9a22b</string>
+    <string name="begin_date">Begin Date</string>
+    <string name="sort_order">Sort</string>
+    <string name="news_desk_values">Desk Values</string>
+    <string name="checkbox_arts">Arts</string>
+    <string name="checkbox_fashion_and_style">Fashion and Style</string>
+    <string name="checkbox_sports">Sports</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_save">Save</string>
+</resources>
