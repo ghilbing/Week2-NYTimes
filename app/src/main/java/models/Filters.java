@@ -2,6 +2,8 @@ package models;
 
 import android.support.annotation.Nullable;
 
+import org.parceler.Parcel;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -15,6 +17,7 @@ import java.util.Set;
  * Created by gretel on 9/19/17.
  */
 
+@Parcel
 public class Filters {
 
     public String sortOrder;

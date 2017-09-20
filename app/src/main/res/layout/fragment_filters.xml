@@ -38,14 +38,10 @@
 
         <Spinner
             android:id="@+id/spSortOrder"
-            android:spinnerMode="dropdown"
-            android:layout_width="100dp"
-            android:layout_height="30dp"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/spSortOrder"
-            android:src="@drawable/ic_sort"/>
+            android:layout_width="133dp"
+            android:layout_height="30dp"
+            android:entries="@array/sort_array"
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <LinearLayout
@@ -116,4 +112,12 @@
             style="?android:attr/borderlessButtonStyle"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sort"
+        android:layout_below="@+id/linear_layout_begin_date"
+        android:layout_toEndOf="@+id/linear_layout_sort_order" />
 </RelativeLayout>

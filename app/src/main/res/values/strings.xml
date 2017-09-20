@@ -13,4 +13,12 @@
     <string name="checkbox_sports">Sports</string>
     <string name="button_cancel">Cancel</string>
     <string name="button_save">Save</string>
+    <string name="button_search">Search</string>
+
+    <string-array name="sort_array">
+        <item>Newest</item>
+        <item>Oldest</item>
+    </string-array>
+
+
 </resources>

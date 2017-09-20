@@ -3,12 +3,14 @@ package models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 import java.util.List;
 
 /**
  * Created by gretel on 9/19/17.
  */
-
+@Parcel
 public class Response {
 
     @SerializedName("docs")
