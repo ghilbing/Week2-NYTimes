@@ -85,7 +85,7 @@ public class SearchActivity extends AppCompatActivity {
         filters = new Filters("newest", new HashSet<String>(), null, "");
 
         setupViews();
-        checkConnection();
+      //  checkConnection();
 
 
     }

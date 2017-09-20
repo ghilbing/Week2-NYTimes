@@ -1,11 +1,16 @@
 package models;
 
+import android.text.TextUtils;
+
+import com.example.codepath.nytimesapp.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
 
 import java.util.List;
+
+import static android.R.attr.thumbnail;
 
 /**
  * Created by gretel on 9/19/17.
@@ -47,8 +52,19 @@ public class Doc {
     @Expose
     public String id;
 
+    public int colorId;
+
     // empty constructor for Parcelable
+
+
     public Doc() {}
+
+   /* //Constructor for database
+    public Doc(String id, String webUrl, Headline headline) {
+        this.id = id;
+        this.webUrl = webUrl;
+        this.headline = headline;
+    }*/
 
     public String getWebUrl() {
         return webUrl;
@@ -157,6 +173,20 @@ public class Doc {
         }
         return null;
     }
-}
+
+    private void setColorId() {
+        colorId = R.color.accent;
+            if (!TextUtils.isEmpty(newsDesk)) {
+                if (newsDesk.equalsIgnoreCase("arts")) {
+                    colorId = R.color.news_desk_art;
+                } else if (newsDesk.equalsIgnoreCase("sports")) {
+                    colorId = R.color.news_desk_sports;
+                } else if (newsDesk.equalsIgnoreCase("fashion & style")) {
+                    colorId = R.color.news_desk_fashion;
+                }
+            }
+        }
+    }
+
 
 

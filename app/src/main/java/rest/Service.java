@@ -1,5 +1,7 @@
 package rest;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import models.SearchApiResponse;
@@ -14,4 +16,5 @@ import retrofit2.http.QueryMap;
 public interface Service {
     @GET("articlesearch.json")
     Call<SearchApiResponse> getSearchResults(@QueryMap Map<String, String> options);
+
 }

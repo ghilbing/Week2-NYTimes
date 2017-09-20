@@ -1,6 +1,7 @@
 package models;
 
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import org.parceler.Parcel;
 
@@ -34,6 +35,7 @@ public class Filters {
         this.newsDesks = newsDesks;
         this.beginDate = beginDate;
         this.query = query;
+        Log.i("FILTERS", query.toString());
     }
 
     private String formattedNewsDesks() {
@@ -46,6 +48,7 @@ public class Filters {
         }
         builder.append(")");
         return builder.toString();
+
     }
 
     private String formattedBeginDate() {
@@ -67,6 +70,7 @@ public class Filters {
             result.put("begin_date", formattedBeginDate());
         }
         return result;
+
     }
 
     public void setQuery(String q) {
