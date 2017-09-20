@@ -170,4 +170,13 @@ public class FiltersFragment extends DialogFragment implements DatePickerDialog.
             }
         });
     }
+
+    private void setupCancelButton(){
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+    }
 }
