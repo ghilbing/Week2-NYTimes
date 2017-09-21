@@ -16,8 +16,8 @@
     <string name="button_search">Search</string>
 
     <string-array name="sort_array">
-        <item>Newest</item>
-        <item>Oldest</item>
+        <item>newest</item>
+        <item>oldest</item>
     </string-array>
 
 

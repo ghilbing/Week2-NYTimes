@@ -24,6 +24,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -66,6 +67,8 @@ public class SearchActivity extends AppCompatActivity {
     @Bind(R.id.btn_search)
     Button search;
 
+    private String mQueryString;
+
 
     EndlessRecyclerViewScrollListener mScrollListener;
 
@@ -95,7 +98,44 @@ public class SearchActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu){
 
         //Inflate menu
-        getMenuInflater().inflate(R.menu.menu_item, menu);
+       /* getMenuInflater().inflate(R.menu.menu_item, menu);
+
+        return super.onCreateOptionsMenu(menu);*/
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_item, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mQueryString = query;
+
+                // perform query here
+                onArticleSearch(0);
+
+                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
+                // see https://code.google.com/p/android/issues/detail?id=24599
+                searchView.clearFocus();
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+               // onArticleSearch(0);
+
+                return true;
+            }
+        });
+
+        // Customize searchview text and hint colors
+        int searchEditId = android.support.v7.appcompat.R.id.search_src_text;
+        EditText et = searchView.findViewById(searchEditId);
+        et.setTextColor(Color.WHITE);
+        et.setHintTextColor(Color.WHITE);
 
         return super.onCreateOptionsMenu(menu);
 

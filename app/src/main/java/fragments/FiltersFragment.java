@@ -103,6 +103,7 @@ public class FiltersFragment extends DialogFragment implements DatePickerDialog.
         getDialog().setTitle("Edit Filters");
         setupDatePickerClickListener();
         setupSaveButton();
+        setupCancelButton();
         setupFilters();
     }
 

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Parcelable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.codepath.nytimesapp.R;
@@ -30,6 +33,8 @@ import static android.R.attr.font;
 import static android.R.attr.switchMinWidth;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
+import static java.security.AccessController.getContext;
+
 /**
  * Created by gretel on 9/19/17.
  */
@@ -41,6 +46,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private final int TEXT = 0;
     private final int MULTIMEDIA = 1;
+
+
 
 
 
@@ -106,7 +113,16 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 MultimediaViewHolder multimediaViewHolder = (MultimediaViewHolder) holder;
                 multimediaViewHolder.title.setText(article.getHeadline().getMain());
-                multimediaViewHolder.desk.setText(article.getNewsDesk());
+
+                if (!TextUtils.isEmpty(article.newsDesk)){
+
+                    multimediaViewHolder.desk.setText(article.getNewsDesk());
+                    multimediaViewHolder.desk.setVisibility(View.VISIBLE);
+                    multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, article.colorId));
+                } else {
+                    multimediaViewHolder.desk.setVisibility(View.GONE);
+                }
+
                 Log.d("VER", String.valueOf(article.getNewsDesk()));
                 Glide.with(context)
                         .load(article.getImageAddress())
@@ -155,7 +171,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return articles.size();
     }
 
-    public class TextViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class TextViewHolder extends RecyclerView.ViewHolder{
 
         @Bind(R.id.tv_title_to)
         TextView title;
@@ -164,17 +180,27 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public TextViewHolder(View itemView) {
             super(itemView);
+            itemView.setClickable(true);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Toast.makeText(context, "The item is: " + getPosition(), Toast.LENGTH_LONG).show();
+
+                    String url = articles.get(position).webUrl;
+
+                    Intent intent = new Intent(context, ArticleActivity.class);
+                    intent.putExtra("url", url);
+                    context.startActivity(intent);
+                }
+            });
 
             ButterKnife.bind(this, itemView);
         }
 
-        @Override
-        public void onClick(View view) {
-
-        }
     }
 
-    public class MultimediaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MultimediaViewHolder extends RecyclerView.ViewHolder{
 
         @Bind(R.id.tv_title)
         TextView title;
@@ -185,12 +211,24 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public MultimediaViewHolder(View itemView) {
             super(itemView);
+            itemView.setClickable(true);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Toast.makeText(context, "The item is: " + getPosition(), Toast.LENGTH_LONG).show();
+
+                    String url = articles.get(position).webUrl;
+
+                    Intent intent = new Intent(context, ArticleActivity.class);
+                    intent.putExtra("url", url);
+                    context.startActivity(intent);
+                }
+            });
 
             ButterKnife.bind(this, itemView);
         }
 
-        @Override
-        public void onClick(View view) {
 
 
         }
@@ -215,4 +253,4 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         }
     }*/
-}
+

@@ -1,13 +1,17 @@
 package models;
 
+import android.os.Parcelable;
 import android.text.TextUtils;
 
 import com.example.codepath.nytimesapp.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.parceler.Parcel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static android.R.attr.thumbnail;
@@ -16,7 +20,7 @@ import static android.R.attr.thumbnail;
  * Created by gretel on 9/19/17.
  */
 @Parcel
-public class Doc {
+public class Doc implements Serializable {
 
     @SerializedName("web_url")
     @Expose
@@ -174,6 +178,14 @@ public class Doc {
         return null;
     }
 
+    private void setNewsDesk(JSONObject jsonObject) throws JSONException {
+        newsDesk = jsonObject.getString("news_desk");
+        if (newsDesk.equalsIgnoreCase("null") || newsDesk.equalsIgnoreCase("none")) {
+            // clean up some data
+            newsDesk = "";
+        }
+    }
+
     private void setColorId() {
         colorId = R.color.accent;
             if (!TextUtils.isEmpty(newsDesk)) {
@@ -186,7 +198,9 @@ public class Doc {
                 }
             }
         }
-    }
+
+
+}
 
 
 
