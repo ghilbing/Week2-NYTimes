@@ -37,6 +37,7 @@ import static android.R.attr.breadCrumbShortTitle;
 import static android.R.attr.bufferType;
 import static android.R.attr.font;
 import static android.R.attr.switchMinWidth;
+import static android.R.id.input;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
 
 import static java.security.AccessController.getContext;
@@ -120,19 +121,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 MultimediaViewHolder multimediaViewHolder = (MultimediaViewHolder) holder;
                 multimediaViewHolder.title.setText(article.getHeadline().getMain());
-                String dateArticle = article.getPubDate();
-
-               // multimediaViewHolder.beginDate.setText(day);
-
-                try {
-                    Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateArticle);
-                    String formattedDate = new SimpleDateFormat()
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                multimediaViewHolder.beginDate.setText(article.getPubDate());
 
 
-                // multimediaViewHolder.beginDate.setText(article.getPubDate());
 
                 if (!TextUtils.isEmpty(article.newsDesk)){
 
@@ -208,7 +199,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Toast.makeText(context, "The item is: " + getPosition(), Toast.LENGTH_LONG).show();
 
                     String url = articles.get(position).webUrl;
 
@@ -241,7 +231,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Toast.makeText(context, "The item is: " + getPosition(), Toast.LENGTH_LONG).show();
 
                     String url = articles.get(position).webUrl;
 

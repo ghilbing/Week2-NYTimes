@@ -14,6 +14,9 @@
     <string name="button_cancel">Cancel</string>
     <string name="button_save">Save</string>
     <string name="button_search">Search</string>
+    <string name="subject_prefix_share_action">Enjoy this!</string>
+    <string name="title_share_action">Share article</string>
+    <string name="no_trailer_share_actiton">Nothing to share</string>
 
     <string-array name="sort_array">
         <item>newest</item>

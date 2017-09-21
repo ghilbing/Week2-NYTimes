@@ -61,11 +61,11 @@ public class SearchActivity extends AppCompatActivity {
     @Bind(R.id.recycler)
     RecyclerView mRecycler;
 
-    @Bind(R.id.et_query)
+    /*@Bind(R.id.et_query)
     EditText query;
 
     @Bind(R.id.btn_search)
-    Button search;
+    Button search;*/
 
     private String mQueryString;
 
