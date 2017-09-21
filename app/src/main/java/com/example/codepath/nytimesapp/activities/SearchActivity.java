@@ -113,7 +113,9 @@ public class SearchActivity extends AppCompatActivity {
                 mQueryString = query;
 
                 // perform query here
-                onArticleSearch(0);
+                articles.clear();
+                mAdapter.notifyDataSetChanged();
+                onArticleSearch(0, mQueryString);
 
                 // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
                 // see https://code.google.com/p/android/issues/detail?id=24599
@@ -127,7 +129,7 @@ public class SearchActivity extends AppCompatActivity {
 
                // onArticleSearch(0);
 
-                return true;
+                return false;
             }
         });
 
@@ -178,7 +180,7 @@ public class SearchActivity extends AppCompatActivity {
         mScrollListener = new EndlessRecyclerViewScrollListener(layoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                onArticleSearch(page);
+                onArticleSearch(page, mQueryString);
             }
         };
 
@@ -195,7 +197,7 @@ public class SearchActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Your device is not online, check WIFI", Toast.LENGTH_LONG).show();
 
         } else {
-            onArticleSearch(0);
+            onArticleSearch(0, mQueryString);
         }
 
 
@@ -219,8 +221,11 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-    public void onArticleSearch(final int page){
-        filters.setQuery(this.query.getText().toString());
+    public void onArticleSearch(final int page, String mQueryString){
+
+        //filters.setQuery(this.query.getText().toString());
+
+        filters.setQuery(mQueryString);
 
 
         //Call asynctask to retrieve data from the api
@@ -272,7 +277,7 @@ public class SearchActivity extends AppCompatActivity {
 
     public void onArticleSearch(View view){
         clearArticles();
-        onArticleSearch(0);
+        onArticleSearch(0, mQueryString);
     }
 
     private void showEditDialog() {
@@ -284,7 +289,7 @@ public class SearchActivity extends AppCompatActivity {
                 frag.dismiss();
                 filters = newFilters;
                 clearArticles();
-                onArticleSearch(0);
+                onArticleSearch(0, mQueryString);
             }
         });
         frag.show(fm, "fragment_edit_filters");
