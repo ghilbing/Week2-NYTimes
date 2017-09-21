@@ -35,15 +35,15 @@ public class ArticleActivity extends AppCompatActivity {
 
     MenuItem mShare;
 
-    /*@Bind(R.id.toolbar_detail)
-    Toolbar toolbar;*/
+    //@Bind(R.id.toolbar_detail)
+    //Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail);
+       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_detail);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
