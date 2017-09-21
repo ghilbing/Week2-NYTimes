@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,10 @@ import com.example.codepath.nytimesapp.R;
 import com.example.codepath.nytimesapp.activities.ArticleActivity;
 import com.example.codepath.nytimesapp.activities.SearchActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -29,6 +34,7 @@ import butterknife.ButterKnife;
 import models.Doc;
 
 import static android.R.attr.breadCrumbShortTitle;
+import static android.R.attr.bufferType;
 import static android.R.attr.font;
 import static android.R.attr.switchMinWidth;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
@@ -107,12 +113,26 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 TextViewHolder textViewHolder = (TextViewHolder) holder;
                 textViewHolder.title.setText(article.getHeadline().getMain());
                 textViewHolder.desk.setText(article.getNewsDesk());
+                textViewHolder.beginDate.setText(article.getPubDate());
 
                 break;
             case MULTIMEDIA:
 
                 MultimediaViewHolder multimediaViewHolder = (MultimediaViewHolder) holder;
                 multimediaViewHolder.title.setText(article.getHeadline().getMain());
+                String dateArticle = article.getPubDate();
+
+               // multimediaViewHolder.beginDate.setText(day);
+
+                try {
+                    Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateArticle);
+                    String formattedDate = new SimpleDateFormat()
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
+                // multimediaViewHolder.beginDate.setText(article.getPubDate());
 
                 if (!TextUtils.isEmpty(article.newsDesk)){
 
@@ -134,6 +154,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             default:
                 MultimediaViewHolder multimViewHolder = (MultimediaViewHolder) holder;
                 multimViewHolder.title.setText(article.getHeadline().getMain());
+                multimViewHolder.beginDate.setText(article.getPubDate());
                 multimViewHolder.desk.setText(article.getNewsDesk());
                 Glide.with(context)
                         .load(article.getImageAddress())
@@ -177,6 +198,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         TextView title;
         @Bind(R.id.tv_desk)
         TextView desk;
+        @Bind(R.id.tv_beginDate)
+        TextView beginDate;
 
         public TextViewHolder(View itemView) {
             super(itemView);
@@ -208,6 +231,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ImageView multimedia;
         @Bind(R.id.tv_desk)
         TextView desk;
+        @Bind(R.id.tv_beginDate)
+        TextView beginDate;
 
         public MultimediaViewHolder(View itemView) {
             super(itemView);

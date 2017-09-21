@@ -178,8 +178,7 @@ public class Doc implements Serializable {
         return null;
     }
 
-    private void setNewsDesk(JSONObject jsonObject) throws JSONException {
-        newsDesk = jsonObject.getString("news_desk");
+    private void setNewsDesk() {
         if (newsDesk.equalsIgnoreCase("null") || newsDesk.equalsIgnoreCase("none")) {
             // clean up some data
             newsDesk = "";

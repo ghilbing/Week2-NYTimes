@@ -35,7 +35,7 @@ public class Filters {
         this.newsDesks = newsDesks;
         this.beginDate = beginDate;
         this.query = query;
-        Log.i("FILTERS", query.toString());
+
     }
 
     private String formattedNewsDesks() {
