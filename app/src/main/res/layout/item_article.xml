@@ -36,12 +36,14 @@ android:layout_height="match_parent">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Example text"/>
+
     <TextView
         android:id="@+id/tv_beginDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="10dp"
-        android:text="Example Date"/>
+        android:gravity="center_horizontal"
+        android:text="Example Date"
+        android:textSize="10dp" />
 
 </LinearLayout>
 

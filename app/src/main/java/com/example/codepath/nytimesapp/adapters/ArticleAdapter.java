@@ -1,13 +1,12 @@
-package adapters;
+package com.example.codepath.nytimesapp.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.Parcelable;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -16,31 +15,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.codepath.nytimesapp.R;
 import com.example.codepath.nytimesapp.activities.ArticleActivity;
-import com.example.codepath.nytimesapp.activities.SearchActivity;
 
-import java.text.ParseException;
+import org.parceler.Parcels;
+
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import models.Doc;
 
-import static android.R.attr.breadCrumbShortTitle;
-import static android.R.attr.bufferType;
-import static android.R.attr.font;
-import static android.R.attr.switchMinWidth;
-import static android.R.id.input;
+import com.example.codepath.nytimesapp.database.DataBean;
+import com.example.codepath.nytimesapp.models.Doc;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+import static com.example.codepath.nytimesapp.activities.ArticleActivity.EXTRA;
 
-import static java.security.AccessController.getContext;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by gretel on 9/19/17.
@@ -97,10 +97,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return viewHolder;
 
 
-        /*
-        View articleView = inflater.inflate(R.layout.item_article, parent, false);
-        ViewHolder viewHolder = new ViewHolder(articleView);
-        return viewHolder;*/
 
     }
 
@@ -113,26 +109,31 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             case TEXT:
                 TextViewHolder textViewHolder = (TextViewHolder) holder;
                 textViewHolder.title.setText(article.getHeadline().getMain());
-                textViewHolder.desk.setText(article.getNewsDesk());
-                textViewHolder.beginDate.setText(article.getPubDate());
+                //textViewHolder.desk.setText(article.getNewsDesk());
+                String date = article.getPubDate().toString().trim();
+                String subString = date.substring(0, 10);
+                textViewHolder.beginDate.setText(subString);
+
+                textViewHolder.desk.setText(article.setColorId());
+
+               /* if (!TextUtils.isEmpty(article.newsDesk)) {
+                    textViewHolder.desk.setVisibility(View.VISIBLE);
+                    textViewHolder.desk.setBackgroundColor(ContextCompat.getColor(.article.setColorId());
+                } else {
+                    textViewHolder.desk.setVisibility(View.GONE);
+                }
+*/
 
                 break;
             case MULTIMEDIA:
 
                 MultimediaViewHolder multimediaViewHolder = (MultimediaViewHolder) holder;
                 multimediaViewHolder.title.setText(article.getHeadline().getMain());
-                multimediaViewHolder.beginDate.setText(article.getPubDate());
+                String dateM = article.getPubDate().toString().trim();
+                String subStringM = dateM.substring(0, 10);
+                multimediaViewHolder.beginDate.setText(subStringM);
+                multimediaViewHolder.desk.setText(article.getNewsDesk());
 
-
-
-                if (!TextUtils.isEmpty(article.newsDesk)){
-
-                    multimediaViewHolder.desk.setText(article.getNewsDesk());
-                    multimediaViewHolder.desk.setVisibility(View.VISIBLE);
-                    multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, article.colorId));
-                } else {
-                    multimediaViewHolder.desk.setVisibility(View.GONE);
-                }
 
                 Log.d("VER", String.valueOf(article.getNewsDesk()));
                 Glide.with(context)
@@ -159,24 +160,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-/*
-        Doc article = articles.get(position);
-
-        //Set items
-        holder.multimedia.setImageResource(0);
-        holder.title.setText(article.getHeadline().getMain());
-        if(!article.hasImage()){
-            holder.multimedia.setVisibility(View.GONE);
-           // holder.title.setText;
-            return;
-        }
-
-        Glide.with(context).load(article.getImageAddress())
-                .fitCenter()
-                .placeholder(R.drawable.ic_download)
-                .into(holder.multimedia);
-
-    }*/
 
     @Override
     public int getItemCount() {
@@ -200,11 +183,26 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 public void onClick(View view) {
                     int position = getAdapterPosition();
 
-                    String url = articles.get(position).webUrl;
+                    String url = articles.get(position).getWebUrl();
+                   // String title = articles.get(position).getHeadline().getMain();
 
-                    Intent intent = new Intent(context, ArticleActivity.class);
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    int color = context.getResources().getColor(R.color.primary);
+                    builder.setToolbarColor(color);
+                    builder.setShowTitle(true);
+                    builder.addDefaultShareMenuItem();
+                    builder.setCloseButtonIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_action_navigation_arrow_back));
+
+                    customTabsIntent.launchUrl(context, Uri.parse(url));
+
+
+
+                    /*Intent intent = new Intent(context, ArticleActivity.class);
                     intent.putExtra("url", url);
-                    context.startActivity(intent);
+                    intent.putExtra("title", title);
+                    context.startActivity(intent);*/
                 }
             });
 
@@ -232,11 +230,25 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 public void onClick(View view) {
                     int position = getAdapterPosition();
 
-                    String url = articles.get(position).webUrl;
+                    String url = articles.get(position).getWebUrl();
+                  //  String title = articles.get(position).getHeadline().getMain();
 
-                    Intent intent = new Intent(context, ArticleActivity.class);
-                    intent.putExtra("url", url);
-                    context.startActivity(intent);
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    int color = context.getResources().getColor(R.color.primary);
+                    builder.setToolbarColor(color);
+                    builder.setShowTitle(true);
+                    builder.addDefaultShareMenuItem();
+                    builder.setCloseButtonIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_action_navigation_arrow_back));
+
+                    customTabsIntent.launchUrl(context, Uri.parse(url));
+
+                   // Intent intent = new Intent(context, ArticleActivity.class);
+                   // intent.putExtra(EXTRA, Parcels.wrap(articles));
+                   // intent.putExtra("url", url);
+                   // intent.putExtra("title", title);
+                   // context.startActivity(intent);
                 }
             });
 
@@ -248,23 +260,4 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-   /* public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        @Bind(R.id.iv_multimedia)
-        ImageView multimedia;
-        @Bind(R.id.tv_title)
-        TextView title;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            ButterKnife.bind(this, itemView);
-
-        }
-
-        @Override
-        public void onClick(View view) {
-
-        }
-    }*/
 

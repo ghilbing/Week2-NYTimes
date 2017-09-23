@@ -1,58 +1,53 @@
 package com.example.codepath.nytimesapp.activities;
 
-import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.DrawableUtils;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.codepath.nytimesapp.R;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import adapters.ArticleAdapter;
-import adapters.EndlessRecyclerViewScrollListener;
+import com.example.codepath.nytimesapp.adapters.ArticleAdapter;
+import com.example.codepath.nytimesapp.adapters.EndlessRecyclerViewScrollListener;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import fragments.FiltersFragment;
-import models.Doc;
-import models.Filters;
-import models.SearchApiResponse;
-import rest.SearchApi;
+import com.example.codepath.nytimesapp.fragments.FiltersFragment;
+import com.example.codepath.nytimesapp.models.Doc;
+import com.example.codepath.nytimesapp.models.Filters;
+import com.example.codepath.nytimesapp.models.SearchApiResponse;
+import com.example.codepath.nytimesapp.rest.SearchApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity {
+
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -81,6 +76,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_search);
 
         //Setup filters
@@ -151,6 +147,13 @@ public class SearchActivity extends AppCompatActivity {
             showEditDialog();
         }
 
+        if (id == R.id.action_saved_articles) {
+
+            Intent intent = new Intent(this, SavedArticlesActivity.class);
+            startActivity(intent);
+
+        }
+
         return super.onOptionsItemSelected(item);
 
     }
@@ -158,7 +161,10 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setupViews() {
 
-        ButterKnife.bind(this);
+     //   ButterKnife.bind(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        RecyclerView mRecycler = (RecyclerView) findViewById(R.id.recycler);
 
         //Setting the action bar
         setSupportActionBar(toolbar);

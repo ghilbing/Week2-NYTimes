@@ -1,4 +1,4 @@
-package fragments;
+package com.example.codepath.nytimesapp.fragments;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -27,7 +27,7 @@ import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import models.Filters;
+import com.example.codepath.nytimesapp.models.Filters;
 
 import static com.example.codepath.nytimesapp.R.id.btnSave;
 

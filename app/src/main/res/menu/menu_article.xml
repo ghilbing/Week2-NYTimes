@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.codepath.nytimesapp.activities.ArticleActivity">
     <item
         android:id="@+id/share"
         app:showAsAction="always"
         android:icon="@drawable/ic_share"
-        android:orderInCategory="100"
-        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"
+        android:orderInCategory="100"/>
+
+
+    <item
+        android:id="@+id/add"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_add"
+        android:orderInCategory="200"
         />
+
+    <item
+        android:id="@+id/action_saved_articles"
+        android:orderInCategory="2"
+        android:title="@string/saved_articles"
+        app:showAsAction="never"/>
 
 </menu>

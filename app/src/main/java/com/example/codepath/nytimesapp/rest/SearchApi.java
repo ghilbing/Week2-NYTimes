@@ -1,15 +1,12 @@
-package rest;
+package com.example.codepath.nytimesapp.rest;
 
-import android.content.Context;
 import android.util.Log;
-
-import com.example.codepath.nytimesapp.R;
 
 import java.io.IOException;
 import java.util.Map;
 
-import models.Filters;
-import models.SearchApiResponse;
+import com.example.codepath.nytimesapp.models.Filters;
+import com.example.codepath.nytimesapp.models.SearchApiResponse;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;

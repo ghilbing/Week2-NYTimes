@@ -1,4 +1,4 @@
-package adapters;
+package com.example.codepath.nytimesapp.adapters;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;

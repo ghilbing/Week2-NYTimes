@@ -1,6 +1,5 @@
-package models;
+package com.example.codepath.nytimesapp.models;
 
-import android.os.Parcelable;
 import android.text.TextUtils;
 
 import com.example.codepath.nytimesapp.R;
@@ -13,8 +12,6 @@ import org.parceler.Parcel;
 
 import java.io.Serializable;
 import java.util.List;
-
-import static android.R.attr.thumbnail;
 
 /**
  * Created by gretel on 9/19/17.
@@ -43,7 +40,7 @@ public class Doc implements Serializable {
     @SerializedName("document_type")
     @Expose
     public String documentType;
-    @SerializedName("news_desk")
+    @SerializedName("new_desk")
     @Expose
     public String newsDesk;
     @SerializedName("section_name")
@@ -63,7 +60,7 @@ public class Doc implements Serializable {
 
     public Doc() {}
 
-   /* //Constructor for database
+   /* //Constructor for com.example.codepath.nytimesapp.database
     public Doc(String id, String webUrl, Headline headline) {
         this.id = id;
         this.webUrl = webUrl;
@@ -74,80 +71,20 @@ public class Doc implements Serializable {
         return webUrl;
     }
 
-    public void setWebUrl(String webUrl) {
-        this.webUrl = webUrl;
-    }
-
-    public String getSnippet() {
-        return snippet;
-    }
-
-    public void setSnippet(String snippet) {
-        this.snippet = snippet;
-    }
-
-    public String getLeadParagraph() {
-        return leadParagraph;
-    }
-
-    public void setLeadParagraph(String leadParagraph) {
-        this.leadParagraph = leadParagraph;
-    }
-
     public List<Multimedia> getMultimedia() {
         return multimedia;
-    }
-
-    public void setMultimedia(List<Multimedia> multimedia) {
-        this.multimedia = multimedia;
     }
 
     public Headline getHeadline() {
         return headline;
     }
 
-    public void setHeadline(Headline headline) {
-        this.headline = headline;
-    }
-
     public String getPubDate() {
         return pubDate;
     }
 
-    public void setPubDate(String pubDate) {
-        this.pubDate = pubDate;
-    }
-
-    public String getDocumentType() {
-        return documentType;
-    }
-
-    public void setDocumentType(String documentType) {
-        this.documentType = documentType;
-    }
-
     public String getNewsDesk() {
         return newsDesk;
-    }
-
-    public void setNewsDesk(String newsDesk) {
-        this.newsDesk = newsDesk;
-    }
-
-    public String getSectionName() {
-        return sectionName;
-    }
-
-    public void setSectionName(String sectionName) {
-        this.sectionName = sectionName;
-    }
-
-    public String getSubsectionName() {
-        return subsectionName;
-    }
-
-    public void setSubsectionName(String subsectionName) {
-        this.subsectionName = subsectionName;
     }
 
     public String getId() {
@@ -156,10 +93,6 @@ public class Doc implements Serializable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public boolean hasImage() {
-        return this.getImageAddress() != null;
     }
 
     public String getImageAddress() {
@@ -178,25 +111,30 @@ public class Doc implements Serializable {
         return null;
     }
 
-    private void setNewsDesk() {
-        if (newsDesk.equalsIgnoreCase("null") || newsDesk.equalsIgnoreCase("none")) {
-            // clean up some data
-            newsDesk = "";
-        }
-    }
 
-    private void setColorId() {
-        colorId = R.color.accent;
+
+    public String setColorId() {
+
+        if (newsDesk.equalsIgnoreCase("null") || newsDesk.equalsIgnoreCase("none")) {
+            newsDesk = "";
+            return newsDesk;
+        } else {
+
             if (!TextUtils.isEmpty(newsDesk)) {
                 if (newsDesk.equalsIgnoreCase("arts")) {
                     colorId = R.color.news_desk_art;
+                    return newsDesk;
                 } else if (newsDesk.equalsIgnoreCase("sports")) {
                     colorId = R.color.news_desk_sports;
+                    return newsDesk;
                 } else if (newsDesk.equalsIgnoreCase("fashion & style")) {
                     colorId = R.color.news_desk_fashion;
+                    return newsDesk;
                 }
             }
         }
+        return newsDesk;
+    }
 
 
 }

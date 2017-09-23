@@ -24,13 +24,20 @@
 
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".activities.SearchActivity"/>
+                android:value=".activities.SearchActivity" />
         </activity>
         <activity
             android:name=".activities.ArticleActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" />
 
-        </activity>
+        <provider
+            android:name=".database.ArticleProvider"
+            android:authorities="com.example.codepath.nytimesapp.database"
+            android:exported="false"
+            android:multiprocess="true" />
+
+        <activity android:name=".activities.SavedArticlesActivity" />
+
     </application>
 
 </manifest>

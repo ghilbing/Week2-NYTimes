@@ -1,10 +1,8 @@
-package rest;
-
-import android.util.Log;
+package com.example.codepath.nytimesapp.rest;
 
 import java.util.Map;
 
-import models.SearchApiResponse;
+import com.example.codepath.nytimesapp.models.SearchApiResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;

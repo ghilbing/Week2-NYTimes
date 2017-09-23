@@ -1,22 +1,12 @@
-package fragments;
+package com.example.codepath.nytimesapp.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.example.codepath.nytimesapp.R;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-import models.Filters;
 
 
 public class DatePickerFragment extends DialogFragment {
