@@ -13,4 +13,5 @@
     <color name="news_desk_art">#E74C3C</color>
     <color name="news_desk_sports">#28B463</color>
     <color name="news_desk_fashion">#F1C40F</color>
+    <color name="news_desk_default">#727272</color>
 </resources>

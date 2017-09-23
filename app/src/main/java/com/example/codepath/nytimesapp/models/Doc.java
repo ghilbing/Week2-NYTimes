@@ -1,6 +1,7 @@
 package com.example.codepath.nytimesapp.models;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.codepath.nytimesapp.R;
 import com.google.gson.annotations.Expose;
@@ -129,23 +130,39 @@ public class Doc implements Serializable {
 
 
 
-            if (!TextUtils.isEmpty(newsDesk)) {
+           // if (!TextUtils.isEmpty(newsDesk)) {
+        Log.i("WHAT FROM POJO", newsDesk);
+
+
                 if (newsDesk.equalsIgnoreCase("arts&leisure")) {
                     colorId = R.color.news_desk_art;
+                    Log.i("GRETEL", "Arts");
                     return colorId;
 
                 } else if (newsDesk.equalsIgnoreCase("sports")) {
                     colorId = R.color.news_desk_sports;
+                    Log.i("GRETEL", "Sports");
                     return colorId;
 
                 } else if (newsDesk.equalsIgnoreCase("fashion & style")) {
                     colorId = R.color.news_desk_fashion;
+                    Log.i("GRETEL", "Fashion");
                     return colorId;
 
+                } else {
+                    colorId = R.color.news_desk_default;
+                    Log.i("GRETEL", "Default");
+                        return colorId;
+
                 }
+
+        //Log.i("GRETEL", "Entro");
+
+      //  return colorId;
             }
-            return colorId;
-        }
+
+
+   // }
 
 }
 

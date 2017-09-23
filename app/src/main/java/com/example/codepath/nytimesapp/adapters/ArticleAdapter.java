@@ -119,35 +119,39 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 int colorNewsDesk = article.setColorId();
                 Log.i("COLOR TEXT", String.valueOf(colorNewsDesk));
 
+                Log.i("Is NULL?", article.newsDesk);
+
 
                 if(!TextUtils.isEmpty(article.newsDesk)){
+
+                    Log.i("Is NULL?", article.newsDesk);
+
                     textViewHolder.desk.setVisibility(View.VISIBLE);
                    textViewHolder.desk.setBackgroundColor(context.getResources().getColor(colorNewsDesk));
+                    Log.i("VERIFY", article.newsDesk);
                 }
 
-               /* String deskValue= article.getNewsDesk().toString().trim();
+                String deskValue= article.getNewsDesk().toString().trim();
                 Log.i("DESK VALUE", deskValue);
 
+                Log.i("VARIABLE", article.getNewsDesk());
+
+                textViewHolder.desk.setVisibility(View.VISIBLE);
+                textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_art));
+
                 if(String.valueOf(article.newsDesk) == "Arts&Leisure"){
-                    textViewHolder.desk.setVisibility(View.VISIBLE);
-                    textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_art));
+
+                    Log.i("COLORING", article.newsDesk);
                 } else if(deskValue.equalsIgnoreCase("Sports")){
                     textViewHolder.desk.setVisibility(View.VISIBLE);
                     textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_sports));
+                    Log.i("COLORING", article.newsDesk);
                 } else if(deskValue.equalsIgnoreCase("Fashion & Style")){
                     textViewHolder.desk.setVisibility(View.VISIBLE);
                     textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_fashion));
+                    Log.i("COLORING", article.newsDesk);
                 }
 
-                textViewHolder.desk.setText(article.setColorId());*/
-
-               /* if (!TextUtils.isEmpty(article.newsDesk)) {
-                    textViewHolder.desk.setVisibility(View.VISIBLE);
-                    textViewHolder.desk.setBackgroundColor(ContextCompat.getColor(.article.setColorId());
-                } else {
-                    textViewHolder.desk.setVisibility(View.GONE);
-                }
-*/
 
                 break;
             case MULTIMEDIA:
@@ -167,7 +171,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
 
-                if(!TextUtils.isEmpty(article.newsDesk)){
+                /*if(!TextUtils.isEmpty(article.newsDesk)){
                     if(article.setTextDesk() == "Arts&Leisure") {
                         multimediaViewHolder.desk.setVisibility(View.VISIBLE);
                         multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, R.color.news_desk_art));
@@ -178,7 +182,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         multimediaViewHolder.desk.setVisibility(View.VISIBLE);
                         multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, R.color.news_desk_fashion));
                     }
-                }
+                }*/
 
                /* if(String.valueOf(article.getNewsDesk()) == "Arts&Leisure"){
                     multimediaViewHolder.desk.setVisibility(View.VISIBLE);
