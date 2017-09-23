@@ -113,31 +113,44 @@ public class Doc implements Serializable {
 
 
 
-    public String setColorId() {
+    public String setTextDesk() {
 
         if (newsDesk.equalsIgnoreCase("null") || newsDesk.equalsIgnoreCase("none")) {
             newsDesk = "";
-            return newsDesk;
-        } else {
 
-            if (!TextUtils.isEmpty(newsDesk)) {
-                if (newsDesk.equalsIgnoreCase("arts")) {
-                    colorId = R.color.news_desk_art;
-                    return newsDesk;
-                } else if (newsDesk.equalsIgnoreCase("sports")) {
-                    colorId = R.color.news_desk_sports;
-                    return newsDesk;
-                } else if (newsDesk.equalsIgnoreCase("fashion & style")) {
-                    colorId = R.color.news_desk_fashion;
-                    return newsDesk;
-                }
-            }
+            return newsDesk;
+
         }
+
         return newsDesk;
     }
 
+    public int setColorId(){
+
+
+
+            if (!TextUtils.isEmpty(newsDesk)) {
+                if (newsDesk.equalsIgnoreCase("arts&leisure")) {
+                    colorId = R.color.news_desk_art;
+                    return colorId;
+
+                } else if (newsDesk.equalsIgnoreCase("sports")) {
+                    colorId = R.color.news_desk_sports;
+                    return colorId;
+
+                } else if (newsDesk.equalsIgnoreCase("fashion & style")) {
+                    colorId = R.color.news_desk_fashion;
+                    return colorId;
+
+                }
+            }
+            return colorId;
+        }
 
 }
+
+
+
 
 
 

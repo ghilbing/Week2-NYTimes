@@ -3,6 +3,7 @@ package com.example.codepath.nytimesapp.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v4.content.ContextCompat;
@@ -113,8 +114,32 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 String date = article.getPubDate().toString().trim();
                 String subString = date.substring(0, 10);
                 textViewHolder.beginDate.setText(subString);
+                textViewHolder.desk.setText(article.setTextDesk());
 
-                textViewHolder.desk.setText(article.setColorId());
+                int colorNewsDesk = article.setColorId();
+                Log.i("COLOR TEXT", String.valueOf(colorNewsDesk));
+
+
+                if(!TextUtils.isEmpty(article.newsDesk)){
+                    textViewHolder.desk.setVisibility(View.VISIBLE);
+                   textViewHolder.desk.setBackgroundColor(context.getResources().getColor(colorNewsDesk));
+                }
+
+               /* String deskValue= article.getNewsDesk().toString().trim();
+                Log.i("DESK VALUE", deskValue);
+
+                if(String.valueOf(article.newsDesk) == "Arts&Leisure"){
+                    textViewHolder.desk.setVisibility(View.VISIBLE);
+                    textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_art));
+                } else if(deskValue.equalsIgnoreCase("Sports")){
+                    textViewHolder.desk.setVisibility(View.VISIBLE);
+                    textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_sports));
+                } else if(deskValue.equalsIgnoreCase("Fashion & Style")){
+                    textViewHolder.desk.setVisibility(View.VISIBLE);
+                    textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_fashion));
+                }
+
+                textViewHolder.desk.setText(article.setColorId());*/
 
                /* if (!TextUtils.isEmpty(article.newsDesk)) {
                     textViewHolder.desk.setVisibility(View.VISIBLE);
@@ -132,10 +157,43 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 String dateM = article.getPubDate().toString().trim();
                 String subStringM = dateM.substring(0, 10);
                 multimediaViewHolder.beginDate.setText(subStringM);
-                multimediaViewHolder.desk.setText(article.getNewsDesk());
+                //multimediaViewHolder.desk.setText(article.getNewsDesk());
+
+                multimediaViewHolder.desk.setText(article.setTextDesk());
+
+                int colorNewsDeskM = article.setColorId();
+                Log.i("COLOR TEXT", String.valueOf(colorNewsDeskM));
 
 
-                Log.d("VER", String.valueOf(article.getNewsDesk()));
+
+
+                if(!TextUtils.isEmpty(article.newsDesk)){
+                    if(article.setTextDesk() == "Arts&Leisure") {
+                        multimediaViewHolder.desk.setVisibility(View.VISIBLE);
+                        multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, R.color.news_desk_art));
+                    } else if(article.setTextDesk() == "Sports"){
+                        multimediaViewHolder.desk.setVisibility(View.VISIBLE);
+                        multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, R.color.news_desk_sports));
+                    } else if(article.setTextDesk() == "Fashion & Style"){
+                        multimediaViewHolder.desk.setVisibility(View.VISIBLE);
+                        multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, R.color.news_desk_fashion));
+                    }
+                }
+
+               /* if(String.valueOf(article.getNewsDesk()) == "Arts&Leisure"){
+                    multimediaViewHolder.desk.setVisibility(View.VISIBLE);
+                    multimediaViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_art));
+                } else if(String.valueOf(article.getNewsDesk()) =="Sports"){
+                    multimediaViewHolder.desk.setVisibility(View.VISIBLE);
+                    multimediaViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_sports));
+                } else if(String.valueOf(article.getNewsDesk())=="Fashion & Style"){
+                    multimediaViewHolder.desk.setVisibility(View.VISIBLE);
+                    multimediaViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_fashion));
+                }
+*/
+
+
+                Log.d("NEWS DESK", String.valueOf(article.setTextDesk()));
                 Glide.with(context)
                         .load(article.getImageAddress())
                         .fitCenter()
