@@ -18,10 +18,10 @@
         android:orderInCategory="200"
         />
 
-    <item
+   <!-- <item
         android:id="@+id/action_saved_articles"
         android:orderInCategory="2"
         android:title="@string/saved_articles"
-        app:showAsAction="never"/>
+        app:showAsAction="never"/>-->
 
 </menu>

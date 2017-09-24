@@ -17,11 +17,11 @@
         android:icon="@drawable/ic_filter"
         app:showAsAction="always"/>
 
-    <item
+  <!--  <item
         android:id="@+id/action_saved_articles"
         android:orderInCategory="200"
         android:title="@string/saved_articles"
-        app:showAsAction="never"/>
+        app:showAsAction="never"/>-->
 
 
 

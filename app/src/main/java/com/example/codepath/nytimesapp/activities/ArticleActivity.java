@@ -123,12 +123,12 @@ public class ArticleActivity extends AppCompatActivity {
             saveArticle();
         }
 
-        if (id == R.id.action_saved_articles) {
+       /* if (id == R.id.action_saved_articles) {
 
             Intent intent = new Intent(this, SavedArticlesActivity.class);
             startActivity(intent);
 
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 
