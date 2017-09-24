@@ -16,26 +16,29 @@ android:layout_height="match_parent">
         android:id="@+id/iv_multimedia"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:layout_margin="@dimen/picture"
         android:scaleType="centerInside"
-        android:src="@mipmap/ic_launcher"
-        />
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="2"
         android:ellipsize="end"
-        android:textStyle="bold"
+        android:maxLines="2"
+        android:paddingLeft="@dimen/left_title"
         android:text="This is a test for title"
 
-        />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_desk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Example text"/>
+        android:gravity="center_horizontal"
+        android:text="Example text"
+        android:textColor="@color/cardview_light_background"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_beginDate"

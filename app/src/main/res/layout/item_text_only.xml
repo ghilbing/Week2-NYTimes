@@ -12,23 +12,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/tv_title_to"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:maxLines="2"
                     android:ellipsize="end"
-                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:paddingLeft="@dimen/left_title"
                     android:text="This is a test for title"
 
-                    />
+                    android:textStyle="bold" />
 
 
                 <TextView
-            android:id="@+id/tv_desk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Example text"/>
+                    android:id="@+id/tv_desk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Example text"
+                    android:textColor="@color/cardview_light_background"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_beginDate"

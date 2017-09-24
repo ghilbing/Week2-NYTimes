@@ -119,39 +119,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 int colorNewsDesk = article.setColorId();
                 Log.i("COLOR TEXT", String.valueOf(colorNewsDesk));
 
-                Log.i("Is NULL?", article.newsDesk);
-
 
                 if(!TextUtils.isEmpty(article.newsDesk)){
 
                     Log.i("Is NULL?", article.newsDesk);
-
                     textViewHolder.desk.setVisibility(View.VISIBLE);
-                   textViewHolder.desk.setBackgroundColor(context.getResources().getColor(colorNewsDesk));
+                    textViewHolder.desk.setBackgroundResource(colorNewsDesk);
                     Log.i("VERIFY", article.newsDesk);
                 }
-
-                String deskValue= article.getNewsDesk().toString().trim();
-                Log.i("DESK VALUE", deskValue);
-
-                Log.i("VARIABLE", article.getNewsDesk());
-
-                textViewHolder.desk.setVisibility(View.VISIBLE);
-                textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_art));
-
-                if(String.valueOf(article.newsDesk) == "Arts&Leisure"){
-
-                    Log.i("COLORING", article.newsDesk);
-                } else if(deskValue.equalsIgnoreCase("Sports")){
-                    textViewHolder.desk.setVisibility(View.VISIBLE);
-                    textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_sports));
-                    Log.i("COLORING", article.newsDesk);
-                } else if(deskValue.equalsIgnoreCase("Fashion & Style")){
-                    textViewHolder.desk.setVisibility(View.VISIBLE);
-                    textViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_fashion));
-                    Log.i("COLORING", article.newsDesk);
-                }
-
 
                 break;
             case MULTIMEDIA:
@@ -161,40 +136,20 @@ public class ArticleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 String dateM = article.getPubDate().toString().trim();
                 String subStringM = dateM.substring(0, 10);
                 multimediaViewHolder.beginDate.setText(subStringM);
-                //multimediaViewHolder.desk.setText(article.getNewsDesk());
-
                 multimediaViewHolder.desk.setText(article.setTextDesk());
 
                 int colorNewsDeskM = article.setColorId();
                 Log.i("COLOR TEXT", String.valueOf(colorNewsDeskM));
 
 
+                if(!TextUtils.isEmpty(article.newsDesk)){
 
-
-                /*if(!TextUtils.isEmpty(article.newsDesk)){
-                    if(article.setTextDesk() == "Arts&Leisure") {
-                        multimediaViewHolder.desk.setVisibility(View.VISIBLE);
-                        multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, R.color.news_desk_art));
-                    } else if(article.setTextDesk() == "Sports"){
-                        multimediaViewHolder.desk.setVisibility(View.VISIBLE);
-                        multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, R.color.news_desk_sports));
-                    } else if(article.setTextDesk() == "Fashion & Style"){
-                        multimediaViewHolder.desk.setVisibility(View.VISIBLE);
-                        multimediaViewHolder.desk.setBackgroundColor(ContextCompat.getColor(context, R.color.news_desk_fashion));
-                    }
-                }*/
-
-               /* if(String.valueOf(article.getNewsDesk()) == "Arts&Leisure"){
+                    Log.i("Is NULL?", article.newsDesk);
                     multimediaViewHolder.desk.setVisibility(View.VISIBLE);
-                    multimediaViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_art));
-                } else if(String.valueOf(article.getNewsDesk()) =="Sports"){
-                    multimediaViewHolder.desk.setVisibility(View.VISIBLE);
-                    multimediaViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_sports));
-                } else if(String.valueOf(article.getNewsDesk())=="Fashion & Style"){
-                    multimediaViewHolder.desk.setVisibility(View.VISIBLE);
-                    multimediaViewHolder.desk.setBackgroundColor(context.getResources().getColor(R.color.news_desk_fashion));
+                    multimediaViewHolder.desk.setBackgroundResource(colorNewsDeskM);
+                    Log.i("VERIFY", article.newsDesk);
                 }
-*/
+
 
 
                 Log.d("NEWS DESK", String.valueOf(article.setTextDesk()));
